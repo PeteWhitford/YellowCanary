@@ -7,9 +7,9 @@ public class QuarterTotals
     public decimal Ote { get; set; }
     public decimal NonOte { get; set; }
     public decimal SuperPaid { get; set; }
-    public decimal Disbursement { get; set; }
+    public decimal DisbursementTotal { get; set; }
     public decimal SuperAccrued { get; set; }
-    public decimal DisbursementsByDueDate { get; set; }
+    public decimal SuperPaidByDueDate { get; set; }
 
     public static List<QuarterTotals> SumTotals(List<Payslip> payslips, List<Disbursement> disbursements)
     {
@@ -18,24 +18,22 @@ public class QuarterTotals
         var years = payslipYears.Concat(disbursementYears).Distinct();
 
         return years.SelectMany(y =>
-        {
-            return YearlyQuarters.All.Select(quarter =>
+            YearlyQuarters.All.Select(quarter =>
             {
-                var entries = payslips.Where(x => x.End.Year == y && quarter.InRange(x.End)).SelectMany(x => x.Entries).ToList();
+                var quarterPayslips = payslips.Where(x => x.End.Year == y && quarter.InRange(x.End)).ToList();
 
                 return new QuarterTotals
                 {
                     Year = y,
                     Quarter = quarter,
-                    Disbursement = disbursements.Where(x => x.PaymentMade.Year == y && quarter.InRange(x.PaymentMade)).Sum(x => x.ScgAmount),
-                    Ote = entries.Where(x => x.Code.IsOte).Sum(x => x.Amount),
-                    NonOte = entries.Where(x => !x.Code.IsOte).Sum(x => x.Amount),
-                    SuperAccrued = payslips.Where(x => x.End.Year == y && quarter.InRange(x.End)).Sum(x => x.AccruedSuper),
-                    SuperPaid = entries.Where(x => x.Code.IsSuper).Sum(x => x.Amount),
-                    DisbursementsByDueDate = disbursements.Where(x => x.PaymentMade.Year == y && quarter.InFirst28Days(x.PaymentMade)).Sum(x => x.ScgAmount)
+                    DisbursementTotal = disbursements.Where(x => x.PaymentMade.Year == y && quarter.InRange(x.PaymentMade)).Sum(x => x.ScgAmount),
+                    Ote = quarterPayslips.Sum(x => x.OteAmount),
+                    NonOte = quarterPayslips.Sum(x => x.NonOteAmount),
+                    SuperAccrued = quarterPayslips.Sum(x => x.AccruedSuper),
+                    SuperPaid = quarterPayslips.Sum(x => x.SuperPaidAmount),
+                    SuperPaidByDueDate = disbursements.Where(x => x.PaymentMade.Year == y && quarter.InFirst28Days(x.PaymentMade)).Sum(x => x.ScgAmount)
                 };
-            });
-        }).ToList();
+            })).ToList();
     }
 
 }
