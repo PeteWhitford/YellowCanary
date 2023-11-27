@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YellowCanary", "YellowCanary.csproj", "{ED56001C-F7BB-4DCE-B5F7-ECC813B0073F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YellowCanary", "YellowCanary\YellowCanary.csproj", "{1E75CA91-09D6-4725-97F2-C2A7B2BA13DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YellowCanary.Tests", "YellowCanary.Tests\YellowCanary.Tests.csproj", "{E00B9981-2F6B-4D92-8797-7F938DEA3481}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ED56001C-F7BB-4DCE-B5F7-ECC813B0073F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED56001C-F7BB-4DCE-B5F7-ECC813B0073F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED56001C-F7BB-4DCE-B5F7-ECC813B0073F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED56001C-F7BB-4DCE-B5F7-ECC813B0073F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E75CA91-09D6-4725-97F2-C2A7B2BA13DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E75CA91-09D6-4725-97F2-C2A7B2BA13DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E75CA91-09D6-4725-97F2-C2A7B2BA13DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E75CA91-09D6-4725-97F2-C2A7B2BA13DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E00B9981-2F6B-4D92-8797-7F938DEA3481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E00B9981-2F6B-4D92-8797-7F938DEA3481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E00B9981-2F6B-4D92-8797-7F938DEA3481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E00B9981-2F6B-4D92-8797-7F938DEA3481}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

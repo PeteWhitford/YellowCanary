@@ -17,14 +17,11 @@ namespace YellowCanary.Model
             "pay_code", "ote_treament"
         };
 
-        private static string? ProjectDirectory =>
-            Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName;
 
-        private static string DataFilePath => $"{ProjectDirectory ?? "./"}/Sample Super Data.xlsx";
 
-        public SuperData Read()
+        public SuperData Read(string dataFilePath)
         {
-            using var stream = File.Open(DataFilePath, FileMode.Open, FileAccess.Read);
+            using var stream = File.Open(dataFilePath, FileMode.Open, FileAccess.Read);
             using var reader = ExcelReaderFactory.CreateReader(stream);
 
             var data = reader.AsDataSet(new ExcelDataSetConfiguration

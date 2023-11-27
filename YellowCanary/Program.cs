@@ -4,8 +4,9 @@ System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Inst
 
 try
 {
-    var reader = new SuperDataReader();
-    var superData = reader.Read();
+    var projectDirectory = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName;
+    var dataFilePath = $"{projectDirectory ?? "./"}/Sample Super Data.xlsx"; var reader = new SuperDataReader();
+    var superData = reader.Read(dataFilePath);
 
     var employees = superData.GetEmployees();
 
